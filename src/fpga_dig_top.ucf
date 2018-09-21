@@ -1,0 +1,332 @@
+##################################################################################
+## Company: 		Analog Devices, Inc.
+## Engineer: 		MKH
+## Create Date:   07 October 2015 
+##################################################################################
+
+###################################################
+# Period Constraints
+###################################################
+NET bf_data_clk TNM_NET = bf_data_clk;
+TIMESPEC TS_bf_data_clk = PERIOD "bf_data_clk" 120 MHz HIGH 50 %;
+
+NET bf_spi_clk TNM_NET = bf_spi_clk;
+TIMESPEC TS_bf_spi_clk = PERIOD "bf_spi_clk" 30 MHz HIGH 50 %;
+
+NET hadv6_ref_clk_p TNM_NET = hadv6_ref_clk_p;
+TIMESPEC TS_hadv6_ref_clk_p = PERIOD "hadv6_ref_clk_p" 100 MHz HIGH 50% ;
+
+NET lvds_dco1_p TNM_NET = lvds_dco1_p ;
+TIMESPEC TS_lvds_dco1_p = PERIOD "lvds_dco1_p" 500 MHz HIGH 50% ; 
+
+NET lvds_dco2_p TNM_NET = lvds_dco2_p ;
+TIMESPEC TS_lvds_dco2_p = PERIOD "lvds_dco2_p" 500 MHz HIGH 50% ; 
+
+NET lvds_fco1_p TNM_NET = lvds_fco1_p ;
+TIMESPEC TS_lvds_fco1_p = PERIOD "lvds_fco1_p" 125 MHz HIGH 50% ;	
+
+NET lvds_fco2_p TNM_NET = lvds_fco2_p ;
+TIMESPEC TS_lvds_fco2_p = PERIOD "lvds_fco2_p" 125 MHz HIGH 50% ;	
+
+###################################################
+# Input Constraints - OFFSET IN
+###################################################
+NET lvds_fco1_p    TNM = din1_timegroup ; 
+NET lvds_data_?1_p TNM = din1_timegroup ; 
+
+#TIMEGRP din1_timegroup OFFSET = IN 0.5 ns VALID 1.0 ns BEFORE "lvds_dco1_p" RISING ;
+#TIMEGRP din1_timegroup OFFSET = IN 0.5 ns VALID 1.0 ns BEFORE "lvds_dco1_p" FALLING ;
+
+NET lvds_fco2_p    TNM = din2_timegroup ; 
+NET lvds_data_?2_p TNM = din2_timegroup ; 
+
+#TIMEGRP din2_timegroup OFFSET = IN 0.5 ns VALID 1.0 ns BEFORE "lvds_dco2_p" RISING ;
+#TIMEGRP din2_timegroup OFFSET = IN 0.5 ns VALID 1.0 ns BEFORE "lvds_dco2_p" FALLING ;
+
+###################################################
+# TIG Constraints 
+###################################################
+INST spi_fpga_top/i_fpga/fpga_spi_reg* TNM_NET = spi_regs ;
+TIMESPEC TS_spi_regs = FROM spi_regs TIG ;
+
+######################################################################
+# J2 Parallel Data Port, IOSTANDARD must match VBUS_A Supply Setting
+######################################################################
+NET lvds_dco1_p    LOC = B14  | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ; # LA17
+NET lvds_dco1_n    LOC = A14  | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ; 
+
+NET lvds_fco1_p    LOC = B9  | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE | CLOCK_DEDICATED_ROUTE = FALSE ; # LA16
+NET lvds_fco1_n    LOC = C9  | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE | CLOCK_DEDICATED_ROUTE = FALSE ;
+
+NET lvds_data_a1_p LOC = J12 | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ; # LA01
+NET lvds_data_a1_n LOC = K13 | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ;
+NET lvds_data_b1_p LOC = H13 | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ; # LA03
+NET lvds_data_b1_n LOC = J13 | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ; 
+NET lvds_data_c1_p LOC = J11 | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ; # LA04
+NET lvds_data_c1_n LOC = J10 | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ; 
+NET lvds_data_d1_p LOC = J7  | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ; # LA07
+NET lvds_data_d1_n LOC = J8  | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ;
+NET lvds_data_e1_p LOC = A7  | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ; # LA13
+NET lvds_data_e1_n LOC = B7  | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ;
+NET lvds_data_f1_p LOC = E8  | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ; # LA19
+NET lvds_data_f1_n LOC = F9  | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ;
+NET lvds_data_g1_p LOC = G8  | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ; # LA08
+NET lvds_data_g1_n LOC = G9  | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ; 
+NET lvds_data_h1_p LOC = H8  | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ; # LA10
+NET lvds_data_h1_n LOC = H9  | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ; 
+
+NET lvds_dco2_p    LOC = H11 | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ; # LA00
+NET lvds_dco2_n    LOC = H10 | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ;
+
+NET lvds_fco2_p    LOC = B8  | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE | CLOCK_DEDICATED_ROUTE = FALSE ; # LA05
+NET lvds_fco2_n    LOC = C8  | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE | CLOCK_DEDICATED_ROUTE = FALSE ;
+
+NET lvds_data_a2_p LOC = F11 | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ; # LA06
+NET lvds_data_a2_n LOC = E10 | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ;
+NET lvds_data_b2_p LOC = G11 | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ; # LA02
+NET lvds_data_b2_n LOC = F10 | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ; 
+NET lvds_data_c2_p LOC = A10 | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ; # LA12
+NET lvds_data_c2_n LOC = A9  | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ; 
+NET lvds_data_d2_p LOC = D7  | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ; # LA11
+NET lvds_data_d2_n LOC = E7  | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ;
+NET lvds_data_e2_p LOC = D8  | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ; # LA14
+NET lvds_data_e2_n LOC = E9  | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ;
+NET lvds_data_f2_p LOC = D10 | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ; # LA18
+NET lvds_data_f2_n LOC = C10 | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ;
+NET lvds_data_g2_p LOC = K7  | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ; # LA09
+NET lvds_data_g2_n LOC = L7  | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ;
+NET lvds_data_h2_p LOC = K9  | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ; # LA15
+NET lvds_data_h2_n LOC = K10 | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ;
+
+###################################################
+#  Blackfin Interface
+###################################################
+NET bf_spi_clk       LOC = AC23 | IOSTANDARD = LVCMOS25 ; # SPI Slave interface
+NET bf_spi_csb       LOC = AG24 | IOSTANDARD = LVCMOS25 ;
+NET bf_spi_mosi      LOC = AF25 | IOSTANDARD = LVCMOS25 ;
+NET bf_spi_miso      LOC = AB23 | IOSTANDARD = LVCMOS25 ;
+NET bf_spi_clk       CLOCK_DEDICATED_ROUTE = FALSE ; 
+
+NET bf_data_out<15>  LOC = AC28 | IOSTANDARD = LVCMOS25 ; # Data interface
+NET bf_data_out<14>  LOC = AB28 | IOSTANDARD = LVCMOS25 ;
+NET bf_data_out<13>  LOC = AG28 | IOSTANDARD = LVCMOS25 ;
+NET bf_data_out<12>  LOC = AF27 | IOSTANDARD = LVCMOS25 ;
+NET bf_data_out<11>  LOC = AG27 | IOSTANDARD = LVCMOS25 ;
+NET bf_data_out<10>  LOC = AH28 | IOSTANDARD = LVCMOS25 ;
+NET bf_data_out<9>   LOC = AE28 | IOSTANDARD = LVCMOS25 ;
+NET bf_data_out<8>   LOC = AE27 | IOSTANDARD = LVCMOS25 ;
+NET bf_data_out<7>   LOC = AA24 | IOSTANDARD = LVCMOS25 ;
+NET bf_data_out<6>   LOC = AA25 | IOSTANDARD = LVCMOS25 ;
+NET bf_data_out<5>   LOC = AC25 | IOSTANDARD = LVCMOS25 ;
+NET bf_data_out<4>   LOC = AD25 | IOSTANDARD = LVCMOS25 ;
+NET bf_data_out<3>   LOC = AC26 | IOSTANDARD = LVCMOS25 ;
+NET bf_data_out<2>   LOC = AD26 | IOSTANDARD = LVCMOS25 ;
+NET bf_data_out<1>   LOC = AH26 | IOSTANDARD = LVCMOS25 ;
+NET bf_data_out<0>   LOC = AH25 | IOSTANDARD = LVCMOS25 ;
+
+INST "*bf_data_out*" TNM = bf_data_out_pads ;
+TIMESPEC "TS_bf_data_out_ffs"  = FROM FFS  TO bf_data_out_pads 10.5 ns ;
+TIMESPEC "TS_bf_data_out_rams" = FROM RAMS TO bf_data_out_pads 10.5 ns ;
+
+NET bf_data_clk      LOC = AE25 | IOSTANDARD = LVCMOS25 ; # Clock and control signals
+NET bf_are_n         LOC = AA26 | IOSTANDARD = LVCMOS25 ; 
+NET bf_async_ams1    LOC = AB24 | IOSTANDARD = LVCMOS25 ;
+NET bf_read_rdy      LOC = AB27 | IOSTANDARD = LVCMOS25 ; # was bf_fifo_full 
+
+###################################################
+# DUT SPI Interface
+# IOSTANDARD must match Bank 34 IO Supply Setting
+###################################################
+NET dut_spi_clk      LOC = B13 | IOSTANDARD = LVCMOS25 ; # LA21_N
+NET dut_spi_sdio     LOC = C14 | IOSTANDARD = LVCMOS25 ; # LA21_P
+NET dut_spi_csb1     LOC = E15 | IOSTANDARD = LVCMOS25 ; # LA20_P
+NET dut_spi_csb2     LOC = D15 | IOSTANDARD = LVCMOS25 ; # LA20_N
+
+PIN dut_spi_sdio TNM = "dut_spi_sdio_grp" ;
+INST *master1*spi_rd_data* TNM = "dut_spi_rd_data_grp" ;
+TIMESPEC TS_dut_sdio_delay = FROM "dut_spi_sdio_grp" TO "dut_spi_rd_data_grp" 2.0 ns ;
+
+###################################################
+# Bank IO Supply Control
+#
+# 00 = 1.2V
+# 01 = 1.8V
+# 10 = 2.5V
+# 11 = not allowed
+#
+###################################################
+NET vadj_b34_sel0    LOC = L24 | IOSTANDARD = LVCMOS18 ; # IO Bank 34 
+NET vadj_b34_sel1    LOC = L25 | IOSTANDARD = LVCMOS18 ;
+ 
+NET vadj_b35_sel0    LOC = N28 | IOSTANDARD = LVCMOS18 ; # IO Bank 35
+NET vadj_b35_sel1    LOC = M28 | IOSTANDARD = LVCMOS18 ; 
+
+NET vadj_bus_a_sel0  LOC = P26 | IOSTANDARD = LVCMOS18 ; # Parallel data bus A, J2
+NET vadj_bus_a_sel1  LOC = P25 | IOSTANDARD = LVCMOS18 ; 
+
+NET vadj_bus_b_sel0  LOC = N20 | IOSTANDARD = LVCMOS18 ; # Parallel data bus B, J3
+NET vadj_bus_b_sel1  LOC = N21 | IOSTANDARD = LVCMOS18 ; 
+
+###################################################
+# Miscellaneous signals
+###################################################
+NET hadv6_ref_clk_p  LOC = AD28 | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ; # 100 MHz oscillator
+NET hadv6_ref_clk_n  LOC = AD27 | IOSTANDARD = LVDS_25 | DIFF_TERM = TRUE ; 
+
+NET ext_trig     LOC = AH15 | IOSTANDARD = LVCMOS18 ; # SMA1, J201, IOSTANDARD must match Bank 34 IO Supply Setting
+NET sysclk_ready LOC = Y13  | IOSTANDARD = LVCMOS18 ; # SMA2, J202
+
+###################################################
+# SRAM Interface
+###################################################
+CONFIG INTERNAL_VREF_BANK14 = 0.90 ;
+CONFIG INTERNAL_VREF_BANK15 = 0.90 ;
+CONFIG INTERNAL_VREF_BANK16 = 0.90 ;
+CONFIG INTERNAL_VREF_BANK25 = 0.90 ;
+
+NET sram_k_a_p       LOC = M22  | IOSTANDARD = HSTL_I_18 ;
+NET sram_k_a_n       LOC = M21  | IOSTANDARD = HSTL_I_18 ;
+NET sram_rw_a        LOC = M26  | IOSTANDARD = HSTL_I_18 ;
+NET sram_load_a      LOC = N26  | IOSTANDARD = HSTL_I_18 ;
+NET sram_dll_off_a   LOC = M19  | IOSTANDARD = HSTL_I_18 ;
+NET sram_c_a_p       LOC = K27  | IOSTANDARD = HSTL_II_18 ;
+NET sram_c_a_n       LOC = L26  | IOSTANDARD = HSTL_II_18 ;
+#NET sram_cq_a_p      LOC = U26  | IOSTANDARD = HSTL_II_18 ;
+#NET sram_cq_a_n      LOC = T26  | IOSTANDARD = HSTL_II_18 ;
+#
+NET sram_k_b_p       LOC = D20  | IOSTANDARD = HSTL_II_18 ;
+NET sram_k_b_n       LOC = E19  | IOSTANDARD = HSTL_II_18 ;
+NET sram_rw_b        LOC = A21  | IOSTANDARD = HSTL_II_18 ;
+NET sram_load_b      LOC = A22  | IOSTANDARD = HSTL_II_18 ;
+NET sram_dll_off_b   LOC = H18  | IOSTANDARD = HSTL_II_18 ;
+NET sram_c_b_p       LOC = H19  | IOSTANDARD = HSTL_II_18 ;
+NET sram_c_b_n       LOC = G19  | IOSTANDARD = HSTL_II_18 ;
+#NET sram_cq_b_p      LOC = E25  | IOSTANDARD = HSTL_II_18 ;
+#NET sram_cq_b_n      LOC = F24  | IOSTANDARD = HSTL_II_18 ;
+#
+NET sram_jtag_tdi    LOC = B22  | IOSTANDARD = LVCMOS18 ; 
+NET sram_jtag_tdo    LOC = B23  | IOSTANDARD = LVCMOS18 ; 
+NET sram_jtag_tck    LOC = H20  | IOSTANDARD = LVCMOS18 ; 
+NET sram_jtag_tms    LOC = G21  | IOSTANDARD = LVCMOS18 ; 
+#
+NET sram_addr_a<0>   LOC = P28  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_a<1>   LOC = K23  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_a<2>   LOC = P27  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_a<3>   LOC = M24  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_a<4>   LOC = K24  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_a<5>   LOC = K22  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_a<6>   LOC = L21  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_a<7>   LOC = J23  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_a<8>   LOC = J27  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_a<9>   LOC = K25  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_a<10>  LOC = L27  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_a<11>  LOC = J26  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_a<12>  LOC = L20  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_a<13>  LOC = J28  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_a<14>  LOC = K28  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_a<15>  LOC = H25  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_a<16>  LOC = H26  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_a<17>  LOC = J25  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_a<18>  LOC = M23  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_a<19>  LOC = M27  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_a<20>  LOC = L22  | IOSTANDARD = HSTL_II_18 ;
+#
+NET sram_addr_b<0>   LOC = C18  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_b<1>   LOC = E18  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_b<2>   LOC = B18  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_b<3>   LOC = C20  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_b<4>   LOC = B19  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_b<5>   LOC = J18  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_b<6>   LOC = F19  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_b<7>   LOC = D18  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_b<8>   LOC = K18  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_b<9>   LOC = J17  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_b<10>  LOC = E17  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_b<11>  LOC = A20  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_b<12>  LOC = K17  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_b<13>  LOC = G17  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_b<14>  LOC = G18  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_b<15>  LOC = C19  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_b<16>  LOC = A19  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_b<17>  LOC = D17  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_b<18>  LOC = F17  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_b<19>  LOC = B21  | IOSTANDARD = HSTL_II_18 ;
+NET sram_addr_b<20>  LOC = C21  | IOSTANDARD = HSTL_II_18 ;
+#
+NET sram_data_a<0>   LOC = U22  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<1>   LOC = U23  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<2>   LOC = U24  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<3>   LOC = V25  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<4>   LOC = W23  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<5>   LOC = P20  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<6>   LOC = R22  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<7>   LOC = R27  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<8>   LOC = R28  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<9>   LOC = W22  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<10>  LOC = T22  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<11>  LOC = V23  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<12>  LOC = V24  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<13>  LOC = P21  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<14>  LOC = P22  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<15>  LOC = R23  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<16>  LOC = T24  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<17>  LOC = T25  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<18>  LOC = T27  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<19>  LOC = V28  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<20>  LOC = W28  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<21>  LOC = Y28  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<22>  LOC = W26  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<23>  LOC = W25  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<24>  LOC = Y24  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<25>  LOC = T21  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<26>  LOC = R20  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<27>  LOC = U28  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<28>  LOC = U27  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<29>  LOC = V26  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<30>  LOC = W27  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_a<31>  LOC = Y27  | IOSTANDARD = HSTL_II_18 ;
+#NET sram_data_a<32>  LOC = W25  | IOSTANDARD = HSTL_II_18 ;
+#NET sram_data_a<33>  LOC = Y23  | IOSTANDARD = HSTL_II_18 ;
+#NET sram_data_a<34>  LOC = Y22  | IOSTANDARD = HSTL_II_18 ;
+#NET sram_data_a<35>  LOC = U21  | IOSTANDARD = HSTL_II_18 ;
+#
+NET sram_data_b<0>   LOC = J22  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<1>   LOC = D22  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<2>   LOC = C23  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<3>   LOC = C25  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<4>   LOC = B26  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<5>   LOC = C26  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<6>   LOC = D23  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<7>   LOC = F22  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<8>   LOC = G22  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<9>   LOC = J21  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<10>  LOC = H21  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<11>  LOC = H23  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<12>  LOC = B24  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<13>  LOC = A26  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<14>  LOC = A27  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<15>  LOC = B27  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<16>  LOC = D26  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<17>  LOC = E22  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<18>  LOC = G26  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<19>  LOC = D25  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<20>  LOC = E23  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<21>  LOC = E24  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<22>  LOC = F25  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<23>  LOC = B28  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<24>  LOC = F27  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<25>  LOC = G28  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<26>  LOC = H28  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<27>  LOC = G23  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<28>  LOC = C24  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<29>  LOC = D27  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<30>  LOC = E27  | IOSTANDARD = HSTL_II_18 ;
+NET sram_data_b<31>  LOC = F26  | IOSTANDARD = HSTL_II_18 ;
+#NET sram_data_b<32>  LOC = G27  | IOSTANDARD = HSTL_II_18 ;
+#NET sram_data_b<33>  LOC = C28  | IOSTANDARD = HSTL_II_18 ;
+#NET sram_data_b<34>  LOC = D28  | IOSTANDARD = HSTL_II_18 ;
+#NET sram_data_b<35>  LOC = E28  | IOSTANDARD = HSTL_II_18 ;
+
+###################################################
+# EOF
+###################################################
