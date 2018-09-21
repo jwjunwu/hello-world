@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!--This is an ISE project configuration file.-->
+<!--It holds project specific layout data for the projectmgr plugin.-->
+<!--Copyright (c) 1995-2009 Xilinx, Inc.  All rights reserved.-->
+<Project version="2" owner="projectmgr" name="AD9681_EVALEZ" >
+   <!--This is an ISE project configuration file.-->
+   <ItemView engineview="SynthesisOnly" guiview="Source" compilemode="AutoCompile" >
+      <ClosedNodes>
+         <ClosedNodesVersion>2</ClosedNodesVersion>
+         <ClosedNode>/Automatic `includes</ClosedNode>
+         <ClosedNode>/fpga_dig_top C:|Users|ikhan|Desktop|AD9681_EVALEZ|AD9681_EVALEZ|fpga_dig_top.v/data_clock_ctrl1 - data_clock_ctrl</ClosedNode>
+         <ClosedNode>/fpga_dig_top C:|Users|ikhan|Desktop|AD9681_EVALEZ|AD9681_EVALEZ|fpga_dig_top.v/data_clock_ctrl2 - data_clock_ctrl</ClosedNode>
+         <ClosedNode>/fpga_dig_top C:|Users|ikhan|Desktop|AD9681_EVALEZ|AD9681_EVALEZ|fpga_dig_top.v/dut_sync_ctrl - dut_sync_ctrl</ClosedNode>
+         <ClosedNode>/fpga_dig_top C:|Users|ikhan|Desktop|AD9681_EVALEZ|AD9681_EVALEZ|fpga_dig_top.v/iser_top1 - iser_top</ClosedNode>
+         <ClosedNode>/fpga_dig_top C:|Users|ikhan|Desktop|AD9681_EVALEZ|AD9681_EVALEZ|fpga_dig_top.v/iser_top2 - iser_top</ClosedNode>
+         <ClosedNode>/fpga_dig_top C:|Users|ikhan|Desktop|AD9681_EVALEZ|AD9681_EVALEZ|fpga_dig_top.v/main_memory_top - main_memory_top</ClosedNode>
+         <ClosedNode>/fpga_dig_top C:|Users|ikhan|Desktop|AD9681_EVALEZ|AD9681_EVALEZ|fpga_dig_top.v/spi_fpga_top - spi_fpga_top</ClosedNode>
+         <ClosedNode>/fpga_dig_top C:|Xilinx|MyDesigns|AD9681_EVALEZ|fpga_dig_top.v/data_clock_ctrl1 - data_clock_ctrl</ClosedNode>
+         <ClosedNode>/fpga_dig_top C:|Xilinx|MyDesigns|AD9681_EVALEZ|fpga_dig_top.v/data_clock_ctrl2 - data_clock_ctrl</ClosedNode>
+         <ClosedNode>/fpga_dig_top C:|Xilinx|MyDesigns|AD9681_EVALEZ|fpga_dig_top.v/dut_sync_ctrl - dut_sync_ctrl</ClosedNode>
+         <ClosedNode>/fpga_dig_top C:|Xilinx|MyDesigns|AD9681_EVALEZ|fpga_dig_top.v/iser_top1 - iser_top</ClosedNode>
+         <ClosedNode>/fpga_dig_top C:|Xilinx|MyDesigns|AD9681_EVALEZ|fpga_dig_top.v/iser_top2 - iser_top</ClosedNode>
+         <ClosedNode>/fpga_dig_top C:|Xilinx|MyDesigns|AD9681_EVALEZ|fpga_dig_top.v/main_memory_top - main_memory_top</ClosedNode>
+         <ClosedNode>/fpga_dig_top C:|Xilinx|MyDesigns|AD9681_EVALEZ|fpga_dig_top.v/spi_fpga_top - spi_fpga_top</ClosedNode>
+         <ClosedNode>/fpga_dig_top C:|Xilinx|MyDesigns|AD9681_EVALEZ|fpga_dig_top.v/spi_fpga_top - spi_fpga_top/i_master1 - spi_master_top</ClosedNode>
+      </ClosedNodes>
+      <SelectedItems>
+         <SelectedItem>fpga_dig_top (C:/Xilinx/MyDesigns/AD9681_EVALEZ/fpga_dig_top.v)</SelectedItem>
+      </SelectedItems>
+      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
+      <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000202000000010000000100000064000001a6000000020000000000000000000000000200000064ffffffff000000810000000300000002000001a60000000100000003000000000000000100000003</ViewHeaderState>
+      <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>
+      <CurrentItem>fpga_dig_top (C:/Xilinx/MyDesigns/AD9681_EVALEZ/fpga_dig_top.v)</CurrentItem>
+   </ItemView>
+   <ItemView engineview="SynthesisOnly" sourcetype="DESUT_VERILOG" guiview="Process" >
+      <ClosedNodes>
+         <ClosedNodesVersion>1</ClosedNodesVersion>
+         <ClosedNode>Design Utilities</ClosedNode>
+         <ClosedNode>Implement Design/Map</ClosedNode>
+         <ClosedNode>Implement Design/Place &amp; Route</ClosedNode>
+         <ClosedNode>Implement Design/Translate</ClosedNode>
+         <ClosedNode>Synthesize - XST</ClosedNode>
+         <ClosedNode>User Constraints</ClosedNode>
+      </ClosedNodes>
+      <SelectedItems>
+         <SelectedItem>Generate Target PROM/ACE File</SelectedItem>
+      </SelectedItems>
+      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
+      <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
+      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000000000000000000143000000010000000100000000000000000000000064ffffffff000000810000000000000001000001430000000100000000</ViewHeaderState>
+      <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
+      <CurrentItem>Generate Target PROM/ACE File</CurrentItem>
+   </ItemView>
+   <ItemView guiview="File" >
+      <ClosedNodes>
+         <ClosedNodesVersion>1</ClosedNodesVersion>
+      </ClosedNodes>
+      <SelectedItems/>
+      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
+      <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
+      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000000000000010000000000000000000000000000000000000392000000040101000100000000000000000000000064ffffffff000000810000000000000004000000d40000000100000000000000bb00000001000000000000007600000001000000000000018d0000000100000000</ViewHeaderState>
+      <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
+      <CurrentItem>data_clk_ctrl.v</CurrentItem>
+   </ItemView>
+   <ItemView guiview="Library" >
+      <ClosedNodes>
+         <ClosedNodesVersion>1</ClosedNodesVersion>
+         <ClosedNode>work</ClosedNode>
+      </ClosedNodes>
+      <SelectedItems/>
+      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
+      <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
+      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000000000000010000000000000000000000000000000000000109000000010001000100000000000000000000000064ffffffff000000810000000000000001000001090000000100000000</ViewHeaderState>
+      <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
+      <CurrentItem>work</CurrentItem>
+   </ItemView>
+   <SourceProcessView>000000ff0000000000000002000001b10000012401000000050100000002</SourceProcessView>
+   <CurrentView>Implementation</CurrentView>
+   <ItemView engineview="SynthesisOnly" sourcetype="DESUT_UCF" guiview="Process" >
+      <ClosedNodes>
+         <ClosedNodesVersion>1</ClosedNodesVersion>
+         <ClosedNode>User Constraints</ClosedNode>
+      </ClosedNodes>
+      <SelectedItems>
+         <SelectedItem/>
+      </SelectedItems>
+      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
+      <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
+      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000000000000000000143000000010000000100000000000000000000000064ffffffff000000810000000000000001000001430000000100000000</ViewHeaderState>
+      <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
+      <CurrentItem/>
+   </ItemView>
+</Project>
